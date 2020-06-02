@@ -27,5 +27,11 @@ jobs:
         node-version: 12
     - name: Install Surge
       run: npm install -g surge
-    - name: Run Surge
-      run: surge ./  JamshedReactApp-bootcamp2020.surge.sh --token ${{secrets.SURGE_TOKEN}}
+    - name: GitHub Action for Yarn
+      uses: Borales/actions-yarn@v2.1.0
+      with:
+        cmd: install
+    - name: Making Build folder
+      run: yarn build
+    - name: React App Deploy
+      run: surge ./build jamshedreactapp-bootcamp2020.surge.sh/ --token ${{secrets.SURGE_TOKEN}}       
